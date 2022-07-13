@@ -1,0 +1,15 @@
+form {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin-top: 75px;
+    /* width: 20%; */
+    margin-left: 40%;
+    margin-right: 40%;
+}
+
+input {
+    margin-top: 20px;
+    border: none;
+}
+
