@@ -4,7 +4,7 @@ form.addEventListener("submit", (e) => {
     e.preventDefault()
     let title = document.getElementById("title").value.trim()
     let name = document.getElementById("name").value.trim()
-    let story = document.getElementById("story").value
+    let story = document.getElementById("story").textContent
     let array ={title: "", name: "", story: ""}
     array.title = title
     array.name = name

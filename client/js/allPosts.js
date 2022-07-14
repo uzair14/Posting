@@ -16,10 +16,11 @@ function appendPosts(data) {
 
 function appendPost(postData) {
     const newSection = document.createElement('section');
+    newSection.classList.add("postSection")
     const postTitle = document.createElement('h1');
     const postName = document.createElement('p');
     const postStory = document.createElement('p');
-    postTitle.textContent = postData.title;
+    postTitle.textContent = (postData.title);
     postName.textContent = postData.name;
     postStory.textContent = postData.story;
     newSection.append(postTitle);
