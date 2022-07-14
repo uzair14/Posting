@@ -14,8 +14,8 @@ class Post {
             try {
                 const db = await init();
                 const dbData = await db.collection('posts').find({}).toArray()
-                console.log(dbData);
-                const posts = dbData.map(p => new Post(p))
+                //console.log(dbData);
+                const posts = dbData.map(p => new Post({...p, id: p._id}))
                 if (!posts.length) { throw new Error('No posts here!') }
                 resolve(posts);
             } catch (err) {
@@ -28,10 +28,10 @@ class Post {
         return new Promise (async (resolve, reject) => {
             try {
                 const db = await init();
-                let postData = await db.collection('posts').find({}).toArray()
-                console.log(postData)
+                let postData = await db.collection('posts').find({_id: ObjectId (id)}).toArray()
+                //console.log(postData)
                 //console.log(postData);
-                let post = new Post({...postData[id]});
+                let post = new Post({...postData[0], id: postData[0]._id});
                // console.log(...postData[0])
                 resolve (post);
             } catch (err) {
@@ -40,16 +40,16 @@ class Post {
         });
     };
 
-    static async create(title, name, story){
+    static create(title, name, story){
         return new Promise (async (resolve, reject) => {
             try {
                 const db = await init();
                 let postData = await db.collection('posts').insertOne({title, name, story})
                 let newPost = new Post(postData.ops[0]);
-                console.log(newPost);
+                //console.log(newPost);
                 resolve (newPost);
             } catch (err) {
-                console.log(err)
+                //console.log(err)
                 reject('Post could not be created');
             }
         });
