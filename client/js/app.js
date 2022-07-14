@@ -5,15 +5,16 @@ const postList = document.querySelector("#posting")
 
 form.addEventListener('submit', submitPost);
 
-function getAllPosts(){
-    fetch('http://localhost:3000/posts')
-        .then(r => r.json())
-        .then(appendPosts)
-        .catch(console.warn)
+getAllPosts();
+
+async function getAllPosts(){
+    const resp = await fetch('http://localhost:3000/posts')
+    const { data, error } = await resp.json();
+    data ? appendPosts(data) : showError(error);
 };
 
 function appendPosts(data){
-    data.posts.forEach(appendPost);
+    data.forEach(appendPost)
 };
 
 function submitPost(e){
@@ -39,12 +40,20 @@ function submitPost(e){
 };
 
 function appendPost(postData){
-    const newRow = document.createElement('div');
-    const postt = formatPost(postData, newRow)
-    postList.append(newRow);
+    const newSection = document.createElement('section');
+    const postTitle = document.createElement('h1');
+    const postName = document.createElement('h2');
+    const postStory = document.createElement('p');
+    postTitle.textContent = postData.title;
+    postName.textContent = postData.name;
+    postStory.textContent = postData.story;
+    newSection.append(postTitle);
+    newSection.append(postName);
+    newSection.append(postStory);
+    postList.append(newSection);
 };
 
-function formatPost(post, div){
+/*function formatPost(post, div){
     const title = document.createElement('p');
     const name = document.createElement('p');
     const story = document.createElement('p');
@@ -58,4 +67,4 @@ function formatPost(post, div){
     div.append(story)
 
     return div
-}
+}*/

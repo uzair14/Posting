@@ -1,4 +1,5 @@
 const {init} = require("../initdb");
+const { ObjectId } = require('mongodb')
 
 class Post {
     constructor(data) {
@@ -6,7 +7,7 @@ class Post {
         this.title = data.title;
         this.name = data.name;
         this.story = data.story;
-    }
+    };
 
     static get all() {
                 return new Promise(async (resolve, reject) => {
@@ -18,10 +19,10 @@ class Post {
                 if (!posts.length) { throw new Error('No posts here!') }
                 resolve(posts);
             } catch (err) {
-                reject(`error retrieving posts: ${err.message}`)
+                reject(`error retrieving posts: ${err.message}`);
             }
-        })
-    }
+        });
+    };
 
     static findById (id) {
         return new Promise (async (resolve, reject) => {
@@ -37,19 +38,19 @@ class Post {
                 reject('Post not found');
             }
         });
-    }
+    };
 
-    static create(title, name, story){
+    static async create(title, name, story){
         return new Promise (async (resolve, reject) => {
             try {
                 const db = await init();
                 let postData = await db.collection('posts').insertOne({title, name, story})
-                // console.log(postData)
                 let newPost = new Post(postData.ops[0]);
                 console.log(newPost);
                 resolve (newPost);
             } catch (err) {
-                reject('Error creating post');
+                console.log(err)
+                reject('Post could not be created');
             }
         });
     }
