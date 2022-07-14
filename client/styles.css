@@ -1,15 +1,84 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@370&display=swap');
+
+.container {
+        max-width: 732px;
+        margin: 0 auto;
+}
+
+section {
+    margin-top: 80px;
+}
+
+.page {
+    position: relative;
+    padding: 21px 0;
+}
+
 form {
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    margin-top: 75px;
-    /* width: 20%; */
-    margin-left: 40%;
-    margin-right: 40%;
+    display: block;
+
 }
 
 input {
-    margin-top: 20px;
     border: none;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 38px;
+    margin-top: 12px;
+    line-height: 34px;
+    opacity: 0.85;
+}
+
+input:focus {
+    outline: none;
+}
+
+p {
+    border: none;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 38px;
+    margin-top: 12px;
+    line-height: 34px;
+    opacity: 0.5;
+}
+
+p:empty:not(:focus)::before {
+    content: attr(data-placeholder);
+  }
+
+  p:focus {
+    outline: none;
+  }
+
+#name {
+    font-size: 18px;
+    line-height: 18px;
+}
+
+#story {
+    font-size: 22px;
+    line-height: 1.58;
+}
+
+#publish {
+    display: inline-block;
+    font-weight: 600;
+    font-style: normal;
+    font-size: 19px;
+    color: #000;
+    text-decoration: none;
+    border: 3px solid #333;
+    border-radius: 20px;
+    text-transform: uppercase;
+    padding: 4px 12px;
+    margin: 0 0 15px;
+    background-color: #fff;
+    cursor: pointer;
+    margin-top: 30px;
+    margin-right: 86%;
+    
+}
+
+#posting {
+    margin-top: 100px;
 }
 
