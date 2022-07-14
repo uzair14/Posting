@@ -7,4 +7,5 @@ db.posts.insertMany([
     { title: "Helloooo", name: "John", story: "my story"},
     { title: "Hellowdndw", name: "Uzair", story: "dunno"},
     { title: "Yooooo", name: "Bob", story: "lesss gooooo"},
+    { title: "About the world", name: "Bill", story: "The world"},
 ])
